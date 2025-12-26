@@ -1,7 +1,9 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-  darkMode: "class", // <--- INI KUNCINYA! (Wajib ada biar tombol berfungsi)
+export default {
+  // 👇 TAMBAHKAN BARIS INI (PENTING!)
+  darkMode: "class", 
+  
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,5 +18,4 @@ const config: Config = {
     },
   },
   plugins: [],
-};
-export default config;
+} satisfies Config;
