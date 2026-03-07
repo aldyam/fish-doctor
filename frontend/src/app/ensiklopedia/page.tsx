@@ -196,11 +196,11 @@ export default function Ensiklopedia() {
                    <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">{selectedDisease.desc}</p>
                    <div className="space-y-4">
                       <div className="bg-gray-50 dark:bg-white/5 p-6 rounded-3xl border border-black/5 dark:border-white/5">
-                        <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">🔍 Gejala</h3>
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">Gejala</h3>
                         <ul className="space-y-2">{selectedDisease.symptoms.map((s, i) => (<li key={i} className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300"><div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />{s}</li>))}</ul>
                       </div>
                       <div className="bg-blue-50/50 dark:bg-blue-500/10 p-6 rounded-3xl border border-blue-100 dark:border-blue-500/10">
-                        <h3 className="font-bold text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-2">💊 Pengobatan</h3>
+                        <h3 className="font-bold text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-2">Pengobatan</h3>
                         <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{selectedDisease.treatment}</p>
                       </div>
                    </div>
