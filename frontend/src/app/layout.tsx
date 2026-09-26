@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
+  display: "swap",
   subsets: ["latin"],
 });
 
@@ -26,8 +28,9 @@ export default function RootLayout({
     <html lang="en">
       {/* TAMBAHKAN 'font-sans' DISINI 👇 */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans bg-white dark:bg-[#0b0f19] text-gray-900 dark:text-white`}
+        className={`${inter.variable} ${geistMono.variable} antialiased font-sans bg-background text-foreground`}
       >
+        <Navbar />
         {children}
       </body>
     </html>

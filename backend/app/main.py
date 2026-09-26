@@ -14,7 +14,7 @@ CORS(app) # Izinkan Frontend mengakses Backend ini
 
 # --- KONFIGURASI MODEL ---
 # Karena model ada di folder yang sama dengan main.py, cukup panggil namanya
-MODEL_FILENAME = "model_ikan_v4.h5" 
+MODEL_FILENAME = "fishdoctor_model8020.h5" 
 
 # Mendapatkan lokasi absolut file ini (main.py) agar tidak error path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -38,9 +38,9 @@ CLASS_NAMES = [
 print(f"Sedang memuat model dari: {MODEL_PATH}")
 try:
     model = load_model(MODEL_PATH)
-    print("✅ Model berhasil dimuat!")
+    print("Model berhasil dimuat!")
 except Exception as e:
-    print(f"❌ Gagal memuat model. Error: {e}")
+    print(f"Gagal memuat model. Error: {e}")
     print("Pastikan file .h5 sudah ditaruh di dalam folder 'backend/app/'")
 
 def prepare_image(img_bytes):

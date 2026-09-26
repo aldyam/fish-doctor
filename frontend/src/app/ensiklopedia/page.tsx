@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/Navbar";
 import { Search, ArrowRight, Activity, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -144,38 +143,37 @@ export default function Ensiklopedia() {
   const filtered = diseasesData.filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <main className="min-h-screen bg-[#F5F5F7] dark:bg-[#000000] text-gray-900 dark:text-white pb-20 overflow-x-hidden">
-      <Navbar />
+    <main className="min-h-screen fd-page pb-20 overflow-x-hidden">
       <div className="pt-32 md:pt-40 px-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Ensiklopedia</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-lg">Referensi medis penyakit ikan</p>
+            <p className="text-secondary text-lg">Referensi medis penyakit ikan</p>
           </div>
-          <div className="relative w-full md:w-96">
-             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><Search className="h-5 w-5 text-gray-400" /></div>
-             <input type="text" className="block w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white dark:bg-[#1c1c1e] border-none ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-blue-500/50 text-sm shadow-sm transition-all" placeholder="Cari penyakit..." value={search} onChange={(e) => setSearch(e.target.value)} />
+          <div className="relative w-full md:w-96 rounded-2xl fd-search fd-search-field">
+             <div className="absolute inset-y-0 left-0 z-10 pl-4 flex items-center pointer-events-none"><Search className="h-5 w-5 text-muted" /></div>
+             <input type="text" className="block w-full pl-11 pr-4 py-3.5 rounded-2xl bg-transparent border-none text-sm" placeholder="Cari penyakit..." value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
         </div>
 
         {/* APPLE HEALTH STYLE GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
             {filtered.map((data) => (
-              <motion.div key={data.id} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }} onClick={() => setSelectedDisease(data)} className="group relative bg-white dark:bg-[#1c1c1e] rounded-[2rem] p-6 shadow-sm hover:shadow-xl dark:shadow-none border border-black/5 dark:border-white/5 cursor-pointer overflow-hidden transition-all duration-300">
+              <motion.div key={data.id} onClick={() => setSelectedDisease(data)} className="group relative fd-surface fd-encyclopedia-card rounded-[2rem] p-6 border cursor-pointer overflow-hidden">
                 {/* Subtle Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${data.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 fd-card-tint ${data.color}`} />
                 <div className="relative z-10">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400 dark:text-gray-500 group-hover:bg-white/50 dark:group-hover:bg-white/10 transition-colors">
+                    <div className="w-12 h-12 rounded-2xl fd-icon flex items-center justify-center">
                       <Activity size={22} />
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase ${data.badgeColor}`}>{data.type}</span>
+                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase fd-category ${data.badgeColor}`}>{data.type}</span>
                   </div>
-                  <h2 className="text-xl font-bold mb-1 tracking-tight text-gray-900 dark:text-white">{data.name}</h2>
-                  <p className="text-sm text-gray-400 italic font-serif mb-4">{data.latin}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4 line-clamp-2">{data.desc}</p>
-                  <div className="flex items-center gap-2 text-xs font-bold text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
-                    Lihat Detail <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  <h2 className="text-xl font-bold mb-1 tracking-tight text-foreground">{data.name}</h2>
+                  <p className="text-sm text-muted italic font-serif mb-4">{data.latin}</p>
+                  <p className="text-sm text-secondary leading-relaxed mb-4 line-clamp-2">{data.desc}</p>
+                  <div className="flex items-center gap-2 text-xs font-bold fd-detail-link">
+                    Lihat Detail <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-200" />
                   </div>
                 </div>
               </motion.div>
@@ -186,22 +184,22 @@ export default function Ensiklopedia() {
         <AnimatePresence>
           {selectedDisease && (
             <>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedDisease(null)} className="fixed inset-0 bg-black/40 backdrop-blur-md z-50" />
-              <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] md:w-[600px] bg-white dark:bg-[#1c1c1e] rounded-[2.5rem] p-8 shadow-2xl overflow-y-auto max-h-[85vh] scrollbar-hide border border-white/20 dark:border-white/10">
-                <button onClick={() => setSelectedDisease(null)} className="absolute top-6 right-6 p-2 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 transition-colors"><X size={20} /></button>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedDisease(null)} className="fixed inset-0 fd-overlay z-50" />
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] md:w-[600px] fd-surface fd-elevated rounded-[2.5rem] p-8 overflow-y-auto max-h-[85vh] scrollbar-hide border">
+                <button onClick={() => setSelectedDisease(null)} className="absolute top-6 right-6 p-2 rounded-full fd-button"><X size={20} /></button>
                 <div className="mt-2">
-                   <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase ${selectedDisease.badgeColor}`}>{selectedDisease.type}</span>
+                   <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase fd-category ${selectedDisease.badgeColor}`}>{selectedDisease.type}</span>
                    <h2 className="text-3xl font-bold mt-4 mb-1 tracking-tight">{selectedDisease.name}</h2>
-                   <p className="text-lg text-gray-400 italic font-serif mb-6">{selectedDisease.latin}</p>
-                   <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">{selectedDisease.desc}</p>
+                   <p className="text-lg text-muted italic font-serif mb-6">{selectedDisease.latin}</p>
+                   <p className="text-secondary text-lg leading-relaxed mb-8">{selectedDisease.desc}</p>
                    <div className="space-y-4">
-                      <div className="bg-gray-50 dark:bg-white/5 p-6 rounded-3xl border border-black/5 dark:border-white/5">
-                        <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">Gejala</h3>
-                        <ul className="space-y-2">{selectedDisease.symptoms.map((s, i) => (<li key={i} className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300"><div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />{s}</li>))}</ul>
+                      <div className="fd-soft p-6 rounded-3xl border">
+                        <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">Gejala</h3>
+                        <ul className="space-y-2">{selectedDisease.symptoms.map((s, i) => (<li key={i} className="flex items-start gap-3 text-sm text-secondary"><div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-muted flex-shrink-0" />{s}</li>))}</ul>
                       </div>
-                      <div className="bg-blue-50/50 dark:bg-blue-500/10 p-6 rounded-3xl border border-blue-100 dark:border-blue-500/10">
-                        <h3 className="font-bold text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-2">Pengobatan</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{selectedDisease.treatment}</p>
+                      <div className="fd-accent-panel p-6 rounded-3xl border">
+                        <h3 className="font-bold text-accent-text mb-3 flex items-center gap-2">Pengobatan</h3>
+                        <p className="text-sm text-secondary leading-relaxed">{selectedDisease.treatment}</p>
                       </div>
                    </div>
                 </div>
