@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FishDoctor AI",
-  description: "Deteksi Penyakit Ikan dengan AI",
+  title: "Fish Doctor",
+  description: "Sistem deteksi penyakit ikan air tawar berbasis AI",
 };
 
 export default function RootLayout({
