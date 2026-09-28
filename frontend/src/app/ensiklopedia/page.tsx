@@ -7,133 +7,156 @@ type Disease = { id: number; name: string; latin: string; type: string; desc: st
 
 // DATASET FINAL (Validasi Medis/Jurnal Perikanan)
 const diseasesData: Disease[] = [
-  { 
-    id: 1, 
-    name: "Aeromoniasis (Infeksi Bakteri)", 
-    latin: "Aeromonas hydrophila", 
-    type: "Bakteri", 
-    desc: "Dikenal sebagai Motile Aeromonas Septicemia (MAS). Bakteri oportunistik ini menyerang sistemik saat kualitas air buruk (tinggi bahan organik) atau fluktuasi suhu.", 
+  {
+    id: 1,
+    name: "Aeromoniasis",
+    latin: "Aeromonas hydrophila",
+    type: "Bakteri",
+    desc:
+      "Aeromoniasis merupakan penyakit bakterial yang dapat menyebabkan luka atau borok hemoragik pada kulit, pendarahan pada tubuh maupun pangkal sirip, serta pada infeksi sistemik dapat disertai pembengkakan abdomen atau ascites.",
     symptoms: [
-      "Pendarahan (bercak merah) di kulit & sirip", 
-      "Perut bengkak berisi cairan (Dropsy)", 
-      "Mata menonjol keluar (Exophthalmia)", 
-      "Sisik kusam dan berdiri (Nanas)"
-    ], 
-    treatment: "Perbaiki kualitas air (Ganti air 30%). Pakan + Antibiotik Oxytetracycline (50mg/kg bobot) selama 5-7 hari. Herbal: Ekstrak daun ketapang/bawang putih.", 
-    color: "from-rose-500/20 to-orange-500/20", 
-    badgeColor: "bg-rose-500/10 text-rose-600 dark:text-rose-400" 
+      "Luka atau borok hemoragik pada kulit",
+      "Pendarahan pada tubuh atau pangkal sirip",
+      "Pembengkakan abdomen pada infeksi sistemik",
+      "Dapat disertai penumpukan cairan atau ascites",
+    ],
+    treatment:
+      "Pisahkan ikan yang menunjukkan gejala dan perbaiki faktor lingkungan seperti kualitas air serta tingkat stres. Oxytetracycline dapat digunakan pada indikasi yang sesuai dengan mengikuti ketentuan veteriner dan dosis yang dianjurkan.",
+    color: "from-rose-500/20 to-orange-500/20",
+    badgeColor: "bg-rose-500/10 text-rose-600 dark:text-rose-400",
   },
-  { 
-    id: 2, 
-    name: "Bacterial Gill (Penyakit Insang)", 
-    latin: "Flavobacterium branchiophilum", 
-    type: "Bakteri", 
-    desc: "Menyerang epitel insang menyebabkan hiperplasia (penebalan), sehingga menghambat pertukaran oksigen. Sering terjadi pada kepadatan tebar tinggi.", 
+
+  {
+    id: 2,
+    name: "Bacterial Gill Disease",
+    latin: "Flavobacterium branchiophilum",
+    type: "Bakteri",
+    desc:
+      "Bacterial Gill Disease merupakan penyakit yang menyerang jaringan insang dan dapat mengganggu fungsi respirasi ikan. Kondisi ini sering berkaitan dengan kualitas lingkungan dan pemeliharaan yang kurang optimal.",
     symptoms: [
-      "Insang bengkak, pucat, atau geripis", 
-      "Ikan megap-megap di permukaan (Hipoksia)", 
-      "Operkulum (tutup insang) terbuka", 
-      "Produksi lendir insang berlebih"
-    ], 
-    treatment: "Kurangi kepadatan & stop pakan sementara. Rendaman Garam (1-3 ppt) atau Kalium Permanganat (PK) 2-4 ppm untuk mengikat bahan organik.", 
-    color: "from-orange-500/20 to-yellow-500/20", 
-    badgeColor: "bg-orange-500/10 text-orange-600 dark:text-orange-400" 
+      "Ikan tampak megap-megap di permukaan",
+      "Ikan terlihat lemah",
+      "Insang mengalami perubahan warna",
+      "Material atau lendir dapat menutupi bagian insang",
+    ],
+    treatment:
+      "Perbaiki kualitas air, aerasi, dan kondisi pemeliharaan. Chloramine-T dapat digunakan pada kondisi dan spesies yang sesuai dengan tetap memperhatikan dosis serta ketentuan penggunaan yang berlaku.",
+    color: "from-orange-500/20 to-yellow-500/20",
+    badgeColor: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
   },
-  { 
-    id: 3, 
-    name: "Red Disease (Bercak Merah)", 
-    latin: "Pseudomonas sp. / A. hydrophila", 
-    type: "Bakteri", 
-    desc: "Sering disebut 'Red Pest' atau Pseudomonas Septicemia. Bakteri ini proteolitik (menghancurkan protein), menyebabkan kulit terkelupas hingga daging terekspos.", 
+
+  {
+    id: 3,
+    name: "Bacterial Red Disease",
+    latin: "Berbagai bakteri Gram-negatif",
+    type: "Bakteri",
+    desc:
+      "Bacterial Red Disease merupakan kategori penyakit bakterial yang ditandai dengan kemerahan, lesi, dan pendarahan pada tubuh ikan. Kondisi ini dapat melibatkan berbagai bakteri Gram-negatif dan tidak terbatas pada satu spesies bakteri tertentu.",
     symptoms: [
-      "Luka borok (ulcer) kemerahan terbuka", 
-      "Pendarahan pada pangkal sirip/mulut", 
-      "Gerakan lambat & berada di dasar", 
-      "Nafsu makan hilang total"
-    ], 
-    treatment: "Karantina ikan sakit. Berikan antibiotik spektrum luas (Kanamycin/Erythromycin). Jaga pH air tetap stabil di 7-8.", 
-    color: "from-red-600/20 to-rose-600/20", 
-    badgeColor: "bg-red-600/10 text-red-600 dark:text-red-400" 
+      "Area kemerahan pada permukaan tubuh",
+      "Lesi atau luka pada kulit",
+      "Pendarahan pada bagian tubuh",
+      "Pada kondisi sistemik dapat terjadi pembengkakan abdomen atau mata",
+    ],
+    treatment:
+      "Pisahkan ikan yang menunjukkan gejala, perbaiki kualitas air dan sanitasi kolam, serta kurangi stres dan kepadatan berlebih. Identifikasi penyebab sebaiknya dilakukan sebelum menentukan terapi antimikroba yang sesuai.",
+    color: "from-red-600/20 to-rose-600/20",
+    badgeColor: "bg-red-600/10 text-red-600 dark:text-red-400",
   },
-  { 
-    id: 4, 
-    name: "EUS (Wabah Luka)", 
-    latin: "Aphanomyces invadans", 
-    type: "Jamur", 
-    desc: "Epizootic Ulcerative Syndrome (EUS). Infeksi jamur ganas yang masuk lewat kulit, menembus daging hingga tulang (nekrotik). Dipicu suhu air dingin (<24°C).", 
+
+  {
+    id: 4,
+    name: "Epizootic Ulcerative Syndrome (EUS)",
+    latin: "Aphanomyces invadans",
+    type: "Oomycete",
+    desc:
+      "Epizootic Ulcerative Syndrome (EUS) merupakan penyakit ulseratif yang berkaitan dengan Aphanomyces invadans. Lesi dapat berkembang dari bercak kemerahan menjadi luka dalam dan nekrosis jaringan hingga lapisan otot.",
     symptoms: [
-      "Luka dalam & lebar menyerupai kawah", 
-      "Jaringan otot membusuk (nekrosis)", 
-      "Bercak merah meluas cepat", 
-      "Kematian massal saat hujan/dingin"
-    ], 
-    treatment: "Sangat sulit diobati jika parah. Pencegahan: Tabur Kapur (CaO) untuk naikkan pH. Naikkan suhu air >30°C (Jamur mati di suhu panas).", 
-    color: "from-purple-600/20 to-indigo-600/20", 
-    badgeColor: "bg-purple-600/10 text-purple-600 dark:text-purple-400" 
+      "Bercak kemerahan pada kulit",
+      "Lesi ulseratif atau luka terbuka",
+      "Nekrosis atau kematian jaringan",
+      "Pada kondisi lanjut luka dapat menembus lapisan otot",
+    ],
+    treatment:
+      "Belum tersedia pengobatan kuratif yang efektif untuk ikan yang telah terinfeksi berat. Perbaiki kualitas air, pisahkan ikan terinfeksi, serta lakukan pengelolaan kolam melalui penggunaan garam atau pengapuran sesuai kondisi budidaya.",
+    color: "from-purple-600/20 to-indigo-600/20",
+    badgeColor: "bg-purple-600/10 text-purple-600 dark:text-purple-400",
   },
-  { 
-    id: 5, 
-    name: "Saprolegniasis (Jamur Kapas)", 
-    latin: "Saprolegnia sp.", 
-    type: "Jamur", 
-    desc: "Infeksi sekunder pada luka fisik atau telur ikan. Jamur tumbuh membentuk koloni seperti kapas yang menghancurkan jaringan epidermis.", 
+
+  {
+    id: 5,
+    name: "Saprolegniasis",
+    latin: "Saprolegnia spp.",
+    type: "Oomycete",
+    desc:
+      "Saprolegniasis ditandai dengan pertumbuhan miselium berwarna putih hingga abu-abu menyerupai kapas pada permukaan tubuh, sirip, atau jaringan ikan yang mengalami luka.",
     symptoms: [
-      "Tumbuh serabut halus putih/kelabu (kapas)", 
-      "Luka terlihat berlendir/kotor", 
-      "Sering menyerang telur ikan yang mati", 
-      "Ikan lemah dan berdiam di sudut"
-    ], 
-    treatment: "Oleskan Malachite Green (pada ikan hias) atau Methylene Blue. Rendaman Garam Ikan (NaCl) dosis tinggi singkat. Jemur kolam saat persiapan.", 
-    color: "from-gray-500/20 to-slate-500/20", 
-    badgeColor: "bg-gray-500/10 text-gray-600 dark:text-gray-400" 
+      "Pertumbuhan seperti kapas putih atau abu-abu",
+      "Miselium menempel pada tubuh atau sirip",
+      "Dapat muncul pada bagian kulit yang terluka",
+      "Ikan dapat menjadi lemah dan mengalami ulserasi kulit",
+    ],
+    treatment:
+      "Perbaiki kualitas lingkungan dan kurangi kondisi yang memicu luka atau stres. NaCl dapat digunakan sebagai salah satu tindakan pengendalian pada kondisi budidaya tertentu dengan konsentrasi yang disesuaikan terhadap spesies dan sistem pemeliharaan.",
+    color: "from-gray-500/20 to-slate-500/20",
+    badgeColor: "bg-gray-500/10 text-gray-600 dark:text-gray-400",
   },
-  { 
-    id: 6, 
-    name: "Parasitic Diseases", 
-    latin: "Ichthyophthirius / Argulus", 
-    type: "Parasit", 
-    desc: "Gabungan infeksi ektoparasit: 'Ich' (White Spot) yang mikroskopis atau 'Kutu Ikan' (Argulus) yang terlihat mata. Menyebabkan iritasi hebat.", 
+
+  {
+    id: 6,
+    name: "Parasitic Diseases",
+    latin: "Berbagai jenis parasit",
+    type: "Parasit",
+    desc:
+      "Dalam penelitian ini, Parasitic Diseases digunakan sebagai kategori umum sesuai pelabelan pada dataset sumber dan tidak merujuk pada satu spesies atau genus parasit tertentu. Manifestasi klinis dapat berbeda tergantung jenis parasit yang menginfeksi.",
     symptoms: [
-      "Ikan menggesekkan badan ke dinding (Flashing)", 
-      "Bintik putih kecil / kutu menempel", 
-      "Produksi lendir berlebih (Cloudy skin)", 
-      "Sirip menguncup/robek"
-    ], 
-    treatment: "Ich: Naikkan suhu 30°C + Methylene Blue. Kutu: Cabut manual atau gunakan obat organofosfat (Abate) dengan dosis ketat.", 
-    color: "from-blue-500/20 to-cyan-500/20", 
-    badgeColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400" 
+      "Lendir berlebih pada permukaan tubuh",
+      "Iritasi atau lesi pada kulit, sirip, maupun insang",
+      "Ikan dapat menggosokkan tubuh ke permukaan benda atau flashing",
+      "Pada beberapa jenis infeksi dapat terlihat organisme yang menempel pada tubuh ikan",
+    ],
+    treatment:
+      "Penanganan harus disesuaikan dengan jenis parasit yang menginfeksi. Pisahkan ikan yang menunjukkan gejala, perbaiki kualitas air dan sanitasi, serta lakukan pemeriksaan kulit, sirip, atau insang sebelum menentukan terapi antiparasit yang sesuai.",
+    color: "from-blue-500/20 to-cyan-500/20",
+    badgeColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
   },
-  { 
-    id: 7, 
-    name: "White Tail Disease", 
-    latin: "Macrobrachium rosenbergii Nodavirus", 
-    type: "Virus", 
-    desc: "Penyakit viral (MrNV) yang menyebabkan nekrosis otot (jaringan mati memutih). Sangat mematikan pada larva/benih, terutama udang galah/ikan air tawar tertentu.", 
+
+  {
+    id: 7,
+    name: "White Tail Disease",
+    latin: "Label kelas pada dataset sumber",
+    type: "Kategori Dataset",
+    desc:
+      "Dalam penelitian ini, White Tail Disease digunakan sebagai kategori diagnostik sesuai dengan pelabelan pada dataset sumber. Kelas ini dipertahankan sebagai label visual pada model dan tidak merujuk secara spesifik pada satu agen penyebab tanpa pemeriksaan lebih lanjut.",
     symptoms: [
-      "Bagian ekor berubah warna putih susu", 
-      "Ekor terlihat geripis/rusak", 
-      "Ikan berenang miring/hilang keseimbangan", 
-      "Kematian bertahap dalam 2-3 hari"
-    ], 
-    treatment: "Virus tidak ada obatnya. Isolasi total ikan sakit. Berikan Vitamin C & Immunostimulan untuk tingkatkan daya tahan tubuh ikan yang sehat.", 
-    color: "from-indigo-500/20 to-blue-600/20", 
-    badgeColor: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400" 
+      "Perubahan visual pada bagian ekor atau area kaudal",
+      "Kelainan warna atau kondisi jaringan pada bagian ekor",
+      "Karakteristik visual mengikuti pola citra pada dataset sumber",
+      "Diagnosis etiologis tetap memerlukan pemeriksaan lanjutan",
+    ],
+    treatment:
+      "Pisahkan ikan yang menunjukkan kelainan dari populasi sehat bila memungkinkan, perbaiki kualitas air dan sanitasi lingkungan budidaya, serta lakukan pemeriksaan lebih lanjut untuk menentukan penyebab sebelum memberikan terapi spesifik.",
+    color: "from-indigo-500/20 to-blue-600/20",
+    badgeColor: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400",
   },
-  { 
-    id: 8, 
-    name: "Healthy Fish (Sehat)", 
-    latin: "Kondisi Normal", 
-    type: "Normal", 
-    desc: "Ikan dalam kondisi biologis prima (homeostasis terjaga). Bebas patogen, respon saraf aktif, dan metabolisme berjalan baik.", 
+
+  {
+    id: 8,
+    name: "Healthy Fish",
+    latin: "Kondisi normal",
+    type: "Normal",
+    desc:
+      "Healthy Fish merupakan kategori ikan yang tidak menunjukkan anomali visual penyakit. Ikan tampak aktif dan responsif, warna tubuh terlihat normal, serta kondisi tubuh, insang, sisik, dan sirip tidak menunjukkan kelainan yang jelas.",
     symptoms: [
-      "Berenang lincah dan responsif", 
-      "Nafsu makan tinggi (rakus)", 
-      "Warna tubuh cerah alami/mengkilap", 
-      "Insang berwarna merah segar dan bersih"
-    ], 
-    treatment: "Lanjutkan Standard Operational Procedure (SOP). Jaga parameter air (pH 6.5-8, DO >4 ppm, Amonia <0.02 ppm).", 
-    color: "from-emerald-500/20 to-green-500/20", 
-    badgeColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" 
+      "Aktivitas berenang normal dan responsif",
+      "Warna tubuh tampak cerah dan normal",
+      "Tidak terlihat bercak atau pendarahan",
+      "Tubuh, insang, sisik, dan sirip tidak menunjukkan kelainan visual",
+    ],
+    treatment:
+      "Pertahankan kualitas air, kepadatan pemeliharaan yang sesuai, nutrisi yang mencukupi, serta sanitasi lingkungan budidaya. Lakukan pemantauan kondisi ikan secara berkala untuk mencegah berkembangnya faktor stres dan penyakit oportunistik.",
+    color: "from-emerald-500/20 to-green-500/20",
+    badgeColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
   },
 ];
 

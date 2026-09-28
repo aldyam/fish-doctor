@@ -9,47 +9,72 @@ import CameraCapture from "@/components/CameraCapture";
 import { motion, AnimatePresence } from "framer-motion";
 import type { PredictionResult } from "@/utils/downloadPredictionPdf";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const DISEASE_DB: Record<string, { title: string; desc: string; treatment: string }> = {
   "Aeromoniasis": {
-    title: "Aeromoniasis (Infeksi Bakteri)",
-    desc: "Infeksi bakteri sistemik yang sering terjadi akibat kualitas air buruk.",
-    treatment: "Karantina ikan. Berikan pakan dengan antibiotik Oxytetracycline (50mg/kg). Jaga kebersihan air.",
+    title: "Aeromoniasis",
+    desc:
+      "Ditandai luka atau borok hemoragik pada kulit, pendarahan pada tubuh maupun pangkal sirip, serta pada infeksi sistemik dapat disertai pembengkakan abdomen atau ascites.",
+    treatment:
+      "Pisahkan ikan yang menunjukkan gejala dan perbaiki faktor lingkungan seperti kualitas air serta tingkat stres. Oxytetracycline dapat digunakan pada indikasi yang sesuai dengan mengikuti ketentuan veteriner dan dosis yang dianjurkan.",
   },
+
   "Bacterial Gill Disease": {
-    title: "Penyakit Insang Bakteri",
-    desc: "Pembengkakan pada insang yang menghambat pernapasan ikan.",
-    treatment: "Ganti air segera (30-50%). Berikan garam ikan (1-2 ppt) atau rendaman PK (Kalium Permanganat).",
+    title: "Bacterial Gill Disease",
+    desc:
+      "Ikan dapat tampak megap-megap dan lemah, sedangkan insang mengalami perubahan warna serta dapat dipenuhi material atau lendir yang mengganggu fungsi respirasi.",
+    treatment:
+      "Perbaiki kualitas air, aerasi, dan kondisi pemeliharaan. Chloramine-T dapat digunakan pada kondisi dan spesies yang sesuai dengan tetap memperhatikan dosis serta ketentuan penggunaan yang berlaku.",
   },
+
   "Bacterial Red Disease": {
-    title: "Penyakit Bercak Merah",
-    desc: "Luka borok kemerahan yang bisa menembus hingga daging.",
-    treatment: "Antibiotik spektrum luas (Kanamycin). Tingkatkan aerasi oksigen dan hindari penanganan kasar.",
+    title: "Bacterial Red Disease",
+    desc:
+      "Ditandai area kemerahan pada tubuh, lesi atau luka pada kulit, dan pendarahan. Pada kondisi sistemik dapat disertai pembengkakan abdomen maupun mata.",
+    treatment:
+      "Pisahkan ikan yang menunjukkan gejala, perbaiki kualitas air dan sanitasi kolam, serta kurangi stres dan kepadatan berlebih. Identifikasi penyebab sebaiknya dilakukan sebelum menentukan terapi antimikroba yang sesuai.",
   },
+
   "EUS": {
-    title: "Wabah Luka (EUS)",
-    desc: "Infeksi jamur ganas yang menyebabkan luka kawah dalam.",
-    treatment: "Naikkan suhu air >30°C. Taburkan kapur (CaO) di kolam. Pisahkan ikan yang luka parah.",
+    title: "Epizootic Ulcerative Syndrome (EUS)",
+    desc:
+      "Diawali bercak kemerahan pada kulit yang dapat berkembang menjadi lesi ulseratif dan nekrosis jaringan. Pada kondisi lanjut, luka dapat menembus hingga lapisan otot.",
+    treatment:
+      "Belum tersedia pengobatan kuratif yang efektif untuk ikan yang telah terinfeksi berat. Perbaiki kualitas air, pisahkan ikan terinfeksi, serta lakukan pengelolaan kolam melalui penggunaan garam atau pengapuran sesuai kondisi budidaya.",
   },
+
   "Saprolegniasis": {
-    title: "Jamur Kapas (Saprolegniasis)",
-    desc: "Jamur putih seperti kapas yang tumbuh pada luka terbuka.",
-    treatment: "Oleskan Malachite Green pada area jamur. Berikan garam ikan. Jaga suhu air tetap hangat.",
+    title: "Saprolegniasis",
+    desc:
+      "Ditandai pertumbuhan miselium berwarna putih hingga abu-abu menyerupai kapas pada permukaan tubuh, sirip, atau bagian kulit yang mengalami luka. Ikan juga dapat menjadi lemah dan mengalami ulserasi kulit.",
+    treatment:
+      "Perbaiki kualitas lingkungan dan kurangi kondisi yang memicu luka atau stres. NaCl dapat digunakan sebagai salah satu tindakan pengendalian pada kondisi budidaya tertentu dengan konsentrasi yang disesuaikan terhadap spesies dan sistem pemeliharaan.",
   },
+
   "Healthy Fish": {
     title: "Ikan Sehat",
-    desc: "Kondisi fisik ikan terlihat prima dan sehat. Tidak ditemukan tanda-tanda penyakit berbahaya.",
-    treatment: "Pertahankan kualitas air dan pakan. Lakukan monitoring rutin.",
+    desc:
+      "Ikan menunjukkan aktivitas berenang yang normal dan responsif, warna tubuh tampak cerah, serta tidak terlihat bercak, pendarahan, perubahan warna, maupun kelainan pada tubuh, insang, dan sirip.",
+    treatment:
+      "Pertahankan kualitas air, kepadatan pemeliharaan yang sesuai, nutrisi yang mencukupi, serta sanitasi lingkungan budidaya. Lakukan pemantauan kondisi ikan secara berkala.",
   },
+
   "Parasitic Diseases": {
-    title: "Penyakit Parasit",
-    desc: "Infeksi kutu atau bintik putih yang membuat ikan gatal.",
-    treatment: "Gunakan Methylene Blue atau Formalin. Karantina ikan agar tidak menular ke yang lain.",
+    title: "Parasitic Diseases",
+    desc:
+      "Manifestasi klinis dapat berbeda tergantung jenis parasit. Secara umum dapat ditemukan lendir berlebih, iritasi atau lesi pada kulit, sirip maupun insang, perilaku menggosokkan tubuh, gangguan pernapasan, serta pada beberapa jenis parasit dapat terlihat organisme yang menempel pada tubuh ikan.",
+    treatment:
+      "Penanganan harus disesuaikan dengan jenis parasit yang menginfeksi. Pisahkan ikan yang menunjukkan gejala, perbaiki kualitas air dan sanitasi, serta lakukan pemeriksaan kulit, sirip, atau insang sebelum menentukan terapi antiparasit yang sesuai.",
   },
+
   "White Tail Disease": {
-    title: "Penyakit Ekor Putih",
-    desc: "Penyakit viral yang menyebabkan ekor memutih dan rusak.",
-    treatment: "Belum ada obat efektif (Virus). Isolasi ikan sakit, berikan Vitamin C untuk menaikkan imun.",
-  }
+    title: "White Tail Disease",
+    desc:
+      "White Tail Disease digunakan sebagai kategori diagnostik sesuai dengan pelabelan pada dataset sumber. Kelas ini dipertahankan sebagai label visual pada model dan tidak merujuk secara spesifik pada satu agen penyebab tanpa pemeriksaan lanjutan.",
+    treatment:
+      "Pisahkan ikan yang menunjukkan kelainan dari populasi sehat bila memungkinkan, perbaiki kualitas air dan sanitasi lingkungan budidaya, serta lakukan pemeriksaan lebih lanjut untuk menentukan penyebab sebelum memberikan terapi spesifik.",
+  },
 };
 
 export default function Home() {
@@ -99,7 +124,11 @@ export default function Home() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/predict", {
+      if (!API_URL) {
+        throw new Error("NEXT_PUBLIC_API_URL belum dikonfigurasi.");
+      }
+
+      const response = await fetch(`${API_URL}/predict`, {
         method: "POST",
         body: formData,
       });
@@ -109,8 +138,16 @@ export default function Home() {
         status: "safe" | "danger";
         healthy: boolean;
         error?: string;
+        detail?: string;
       } = await response.json();
-      if (!response.ok) throw new Error(data.error || "Gagal memproses gambar");
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+          data.detail ||
+          "Gagal memproses gambar"
+        );
+      }
 
       const diseaseInfo = DISEASE_DB[data.result] || {
         title: data.result,
