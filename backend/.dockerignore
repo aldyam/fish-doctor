@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.git/
+.gitignore
+
+.vscode/
+.idea/
+
+.DS_Store
+
+app/main_flask_backup.py
